@@ -7,8 +7,10 @@ from selenium import webdriver
 from datetime import date
 today = date.today()
 def link_scrapper():
+    options = webdriver.ChromeOptions()
+    options.add_argument("headless")
     DRIVER_PATH = 'chromeWebDriver/chromedriver.exer'
-    driver = webdriver.Chrome(executable_path=DRIVER_PATH)
+    driver = webdriver.Chrome(executable_path=DRIVER_PATH, chrome_options = options)
     driver.get('https://www.optioncarriere.com/recherche/emplois?s=&l=France')
     #page = requests.get('https://www.optioncarriere.com/recherche/emplois?s=&l=France',headers={"User-Agent":"Mozilla/5.0"}, proxies = {'http': 'https://51.159.115.233:3128'} )
     page = driver.page_source
@@ -30,7 +32,9 @@ def link_scrapper():
     for i in range(0,nbr_page):
         print(i)
         url = 'https://www.optioncarriere.com/emplois-france-57.html?p='+str(i)
-        driver = webdriver.Chrome(executable_path=DRIVER_PATH)
+        options = webdriver.ChromeOptions()
+        options.add_argument("headless")
+        driver = webdriver.Chrome(executable_path=DRIVER_PATH, chrome_options = options)
         driver.get(url)
         page = driver.page_source
         #page = requests.get(url)
@@ -52,7 +56,9 @@ def scarp_documents():
     for link in tqdm(links):
         link = 'https://www.optioncarriere.com'+link
         print(link)
-        driver = webdriver.Chrome(executable_path=DRIVER_PATH)
+        options = webdriver.ChromeOptions()
+        options.add_argument("headless")
+        driver = webdriver.Chrome(executable_path=DRIVER_PATH, chrome_options=options)
         driver.get(link)
         page = driver.page_source
         soup = BeautifulSoup(page, 'html.parser')

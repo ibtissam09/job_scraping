@@ -13,8 +13,6 @@ Created on Wed Jul 20 06:57:52 2022
 from database import insert_documents_fr
 from OptioncarriereFr import scarp_documents
 
-
-
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     jobs = scarp_documents()
